@@ -31,7 +31,7 @@
 2. 可以使用`qlive hub 子命令`或者`qlive.exe hub 子命令`来查看子命令的帮助信息；
 3. 该工具命令分为`hub`组命令和`stream`组命令，其他都是组下面的子命令。
 
-## 命令详解
+## 命令列表
 
 **所有的支持的命令列表**
 
@@ -60,3 +60,30 @@ Commands for stream:
        snapshot		qlive stream snapshot -n <Name> -f <Format> -t <Time> -c <NotifyUrl>
 ```
 
+
+**Hub组命令**
+
+|命令|描述|详细|
+|----|-----|-----|
+|reg|设置工具的`AccessKey`，`SecretKey`和`Hub`信息|[详细](docs/qlive_cmd_hub_reg.md)|
+|info|查看工具当前设置的`AccessKey`，`SecretKey`和`Hub`信息|[详细](docs/qlive_cmd_hub_info.md)|
+|create-stream||[详细](docs/qlive_cmd_hub_create_stream.md)|
+|get-stream||[详细](docs/qlive_cmd_hub_get_stream.md)|
+|list-stream||[详细](docs/qlive_cmd_hub_list_stream.md)|
+
+**Stream组命令**
+
+|命令|描述|详细|
+|-----|-----|-----|
+|update|更新流的`PublishKey`或者`PublishSecurity`信息|[详细](docs/qlive_cmd_stream_update.md)|
+|delete|根据流Id删除一个流|[详细](docs/qlive_cmd_stream_delete.md)|
+|disable|根据流Id禁用一个流|[详细](docs/qlive_cmd_stream_disable.md)|
+|enable|根据流Id启用一个流|[详细](docs/qlive_cmd_stream_enable.md)|
+|rtmp-pub|根据流Id获取该流的RTMP推流地址|[详细](docs/qlive_cmd_stream_rtmp_pub.md)|
+|rtmp-live|根据流Id获取该流的RTMP直播播放地址|[详细](docs/qlive_cmd_stream_rtmp_live.md)|
+|hls-live|根据流Id获取该流的HLS直播播放地址|[详细](docs/qlive_cmd_stream_hls_live.md)|
+|flv-live|根据流Id获取该流的FLV直播播放地址|[详细](docs/qlive_cmd_stream_flv_live.md)|
+|status|根据流Id获取该流的当前状态|[详细](docs/qlive_cmd_stream_status.md)|
+|hls-play|根据流Id和起始，结束时间获取直播流的HLS回放地址|[详细](docs/qlive_cmd_stream_hls_play.md)|
+|saveas|根据流Id和起始，结束时间将直播流转存为视频格式，并返回视频地址|[详细](docs/qlive_cmd_stream_saveas.md)|
+|snapshot|根据流Id和截取图片时间从直播流中截取一张图片，并返回截图地址|[详细](docs/qlive_cmd_stream_snapshot.md)|
