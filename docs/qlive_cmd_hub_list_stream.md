@@ -10,8 +10,8 @@ qlive hub list-stream -s <Status> -l <Limit> -p <Prefix>
 
 # 参数
 
-|名称|描述|可选
-|--------|-------|
+|名称|描述|可选|
+|--------|-------|-----|
 |Status|直播流的状态，可选参数，可选值为`connected`和`disconnected`|Y|
 |Limit|限定返回的记录最大数量，可选参数，如果不设置，会返回所有的流|Y|
 |Prefix|直播流Title的前缀，可以根据该前缀过滤流|Y|
