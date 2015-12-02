@@ -67,9 +67,9 @@ Commands for stream:
 |----|-----|-----|
 |reg|设置工具的`AccessKey`，`SecretKey`和`Hub`信息|[详细](docs/qlive_cmd_hub_reg.md)|
 |info|查看工具当前设置的`AccessKey`，`SecretKey`和`Hub`信息|[详细](docs/qlive_cmd_hub_info.md)|
-|create-stream||[详细](docs/qlive_cmd_hub_create_stream.md)|
-|get-stream||[详细](docs/qlive_cmd_hub_get_stream.md)|
-|list-stream||[详细](docs/qlive_cmd_hub_list_stream.md)|
+|create-stream|创建一个新的直播流，可以选择性设置`PublishKey`和`PublishSecurity`信息|[详细](docs/qlive_cmd_hub_create_stream.md)|
+|get-stream|根据流Id获取一个流的基本信息|[详细](docs/qlive_cmd_hub_get_stream.md)|
+|list-stream|根据列举选项，获取当前`Hub`中的流列表|[详细](docs/qlive_cmd_hub_list_stream.md)|
 
 **Stream组命令**
 
