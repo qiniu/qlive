@@ -4,6 +4,11 @@ import "fmt"
 
 const VERISON = "1.0.0"
 
+
+var hubCmdOrder = []string{"reg", "stat", "create-stream", "get-stream", "list-stream"}
+var streamCmdOrder = []string{"update", "delete", "disable", "enable", "rtmp-pub", "rtmp-live",
+	"hls-live", "flv-live", "hls-play", "status", "saveas", "snapshot"}
+
 var helpInfo = map[string]map[string]string{
 	"hub": map[string]string{
 		"reg":           "qlive hub reg -ak <AccessKey> -sk <SecretKey> -hub <HubName>",
@@ -36,14 +41,14 @@ func Help() {
 	fmt.Println("QLive", VERISON)
 	fmt.Println()
 	fmt.Println("Commands for hub:")
-	for cmd, help := range helpInfo["hub"] {
-		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, help))
+	for _, cmd := range hubCmdOrder {
+		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, helpInfo["hub"][cmd]))
 	}
 
 	fmt.Println()
 	fmt.Println("Commands for stream:")
-	for cmd, help := range helpInfo["stream"] {
-		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, help))
+	for _, cmd := range streamCmdOrder {
+		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, helpInfo["stream"][cmd]))
 	}
 	fmt.Println()
 }
