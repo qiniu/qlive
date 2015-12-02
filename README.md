@@ -8,7 +8,7 @@
 
 |版本|支持平台|链接|
 |---|-----|-----|
-|QLive v1.0.0|Windows，Linux，Mac|[下载]()|
+|QLive v1.0.0|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.0.zip)|
 
 ## 使用方法
 
