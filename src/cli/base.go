@@ -1,12 +1,13 @@
 package cli
+
 import (
 	"encoding/json"
-	"fmt"
 	"errors"
-	"path/filepath"
+	"fmt"
+	"io/ioutil"
 	"os"
 	"os/user"
-	"io/ioutil"
+	"path/filepath"
 )
 
 type LiveHub struct {

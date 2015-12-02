@@ -6,10 +6,9 @@ import (
 	"os"
 )
 
-
 var supportedCmds = map[string]func(string){
-	"hub":cli.Hub,
-	"stream":cli.Stream,
+	"hub":    cli.Hub,
+	"stream": cli.Stream,
 }
 
 func main() {
@@ -21,7 +20,7 @@ func main() {
 		subCmd := args[2]
 		if cliFunc, ok := supportedCmds[cmd]; ok {
 			cliFunc(subCmd)
-		}else {
+		} else {
 			//parse flags, show help or version
 			switch cmd {
 			case "-v":

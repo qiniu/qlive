@@ -1,24 +1,25 @@
 package cli
+
 import (
-	"fmt"
 	"flag"
-	"os"
+	"fmt"
 	"github.com/jemygraw/pili-sdk-go/pili"
+	"os"
 )
 
 var liveHub = LiveHub{}
 var hubSubCmdAlias = map[string]string{
-	"cs":"create-stream",
-	"gs":"get-stream",
-	"ls":"list-stream",
+	"cs": "create-stream",
+	"gs": "get-stream",
+	"ls": "list-stream",
 }
 
 var supportedHubSubCmds = map[string]func(string, string){
-	"stat":GetHubInfo,
-	"reg":RegisterHub,
-	"create-stream":CreateStream,
-	"get-stream":GetStream,
-	"list-stream":ListStream,
+	"stat":          GetHubInfo,
+	"reg":           RegisterHub,
+	"create-stream": CreateStream,
+	"get-stream":    GetStream,
+	"list-stream":   ListStream,
 }
 
 func Hub(subCmd string) {
@@ -30,7 +31,7 @@ func Hub(subCmd string) {
 	//parse and exec sub cmd
 	if subCmdFunc, ok := supportedHubSubCmds[subCmd]; ok {
 		subCmdFunc("hub", subCmd)
-	}else {
+	} else {
 
 		fmt.Println("Unknown cmd ", subCmd, "for hub")
 	}
@@ -69,7 +70,6 @@ func RegisterHub(cmd string, subCmd string) {
 		return
 	}
 
-
 	regErr := liveHub.Set(ak, sk, hub)
 	if regErr != nil {
 		fmt.Println(regErr)
@@ -100,6 +100,8 @@ func CreateStream(cmd string, subCmd string) {
 	flagSet.StringVar(&publishKey, "pbk", "", "publish key")
 	flagSet.StringVar(&publishSecurity, "pbs", "", "publish security")
 
+	flagSet.Parse(os.Args[3:])
+
 	if publishSecurity != "" {
 		if !(publishSecurity == "static" || publishSecurity == "dynamic") {
 			fmt.Println("Publish Security can only be 'static' or 'dynamic'")
@@ -107,12 +109,10 @@ func CreateStream(cmd string, subCmd string) {
 		}
 	}
 
-	flagSet.Parse(os.Args[3:])
-
 	options := pili.OptionalArguments{
-		Title:title,
-		PublishKey:publishKey,
-		PublishSecurity:publishSecurity,
+		Title:           title,
+		PublishKey:      publishKey,
+		PublishSecurity: publishSecurity,
 	}
 
 	stream, cErr := hub.CreateStream(options)
@@ -185,10 +185,10 @@ func ListStream(cmd string, subCmd string) {
 	flagSet.Parse(os.Args[3:])
 
 	options := pili.OptionalArguments{
-		Status:status,
-		Marker:marker,
-		Limit:uint(limit),
-		Title:prefix,
+		Status: status,
+		Marker: marker,
+		Limit:  uint(limit),
+		Title:  prefix,
 	}
 
 	maxRetries := 5
@@ -203,7 +203,7 @@ func ListStream(cmd string, subCmd string) {
 				fmt.Println("Retrying...")
 				maxRetries -= 1
 				continue
-			}else {
+			} else {
 				break
 			}
 		}
