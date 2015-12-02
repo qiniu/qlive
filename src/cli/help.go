@@ -21,7 +21,7 @@ var helpInfo = map[string]map[string]string{
 		"rtmp-live": "qlive stream rtmp-live <StreamId>",
 		"hls-live":  "qlive stream hls-live <StreamId>",
 		"flv-live":  "qlive stream flv-live <StreamId>",
-		"hls-play":  "qlive stream hls-play <StreamId>",
+		"hls-play":  "qlive stream hls-play <StreamId> -s <Start> -e <End>",
 		"status":    "qlive stream status <StreamId>",
 		"saveas":    "qlive stream saveas -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>",
 		"snapshot":  "qlive stream snapshot -n <Name> -f <Format> -t <Time> -c <NotifyUrl>",
