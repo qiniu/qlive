@@ -484,9 +484,145 @@ func GetStreamStatus(cmd string, subCmd string) {
 }
 
 func SaveStreamAsVideo(cmd string, subCmd string) {
+	if len(os.Args) < 4 {
+		CmdHelp(cmd, subCmd)
+		return
+	}
 
+	gErr := liveHub.Get()
+	if gErr != nil {
+		fmt.Println(gErr)
+		return
+	}
+
+	cred := pili.NewCredentials(liveHub.AccessKey, liveHub.SecretKey)
+	hub := pili.NewHub(cred, liveHub.Hub)
+
+	streamId := os.Args[3]
+	flagSet := flag.NewFlagSet(subCmd, flag.ExitOnError)
+	flagSet.Usage = func() {
+		CmdHelp(cmd, subCmd)
+	}
+
+	var name string
+	var format string
+	var startTime string
+	var endTime string
+	var notifyUrl string
+
+	flagSet.StringVar(&name, "n", "", "name")
+	flagSet.StringVar(&format, "f", "", "format")
+	flagSet.StringVar(&startTime, "s", "", "start time")
+	flagSet.StringVar(&endTime, "e", "", "end time")
+	flagSet.StringVar(&notifyUrl, "c", "", "notify url")
+
+	flagSet.Parse(os.Args[4:])
+
+	if name == "" || format == "" || startTime == "" || endTime == "" {
+		CmdHelp(cmd, subCmd)
+		return
+	}
+
+	var start int64
+	var end int64
+	var pErr error
+
+	if start, pErr = parseTime(startTime); pErr != nil {
+		CmdHelp(cmd, subCmd)
+		return
+	}
+
+	if end, pErr = parseTime(endTime); pErr != nil {
+		CmdHelp(cmd, subCmd)
+		return
+	}
+
+	stream, gErr := hub.GetStream(streamId)
+	if gErr != nil {
+		fmt.Println("Get stream error,", gErr)
+		return
+	}
+
+	options := pili.OptionalArguments{
+		NotifyUrl:notifyUrl,
+	}
+
+	ret, sErr := stream.SaveAs(name, format, start, end, options)
+	if sErr != nil {
+		fmt.Println("Save stream as video error,", sErr)
+		return
+	}
+
+	fmt.Println("M3u8Url:\t", ret.Url)
+	fmt.Println("TargetUrl:\t", ret.TargetUrl)
+	fmt.Println()
+	fmt.Println(fmt.Sprintf("See http://api.qiniu.com/status/get/prefop?id=%s", ret.PersistentId))
 }
 
 func TakeStreamSnapshot(cmd string, subCmd string) {
+	if len(os.Args) < 4 {
+		CmdHelp(cmd, subCmd)
+		return
+	}
 
+	gErr := liveHub.Get()
+	if gErr != nil {
+		fmt.Println(gErr)
+		return
+	}
+
+	cred := pili.NewCredentials(liveHub.AccessKey, liveHub.SecretKey)
+	hub := pili.NewHub(cred, liveHub.Hub)
+
+	streamId := os.Args[3]
+	flagSet := flag.NewFlagSet(subCmd, flag.ExitOnError)
+	flagSet.Usage = func() {
+		CmdHelp(cmd, subCmd)
+	}
+
+	var name string
+	var format string
+	var snapshotTime string
+	var notifyUrl string
+
+	flagSet.StringVar(&name, "n", "", "name")
+	flagSet.StringVar(&format, "f", "", "format")
+	flagSet.StringVar(&snapshotTime, "t", "", "snapshot time")
+	flagSet.StringVar(&notifyUrl, "c", "", "notify url")
+
+	flagSet.Parse(os.Args[4:])
+
+	if name == "" || format == "" || snapshotTime == "" {
+		CmdHelp(cmd, subCmd)
+		return
+	}
+
+	var shotTime int64
+	var pErr error
+
+	if shotTime, pErr = parseTime(snapshotTime); pErr != nil {
+		CmdHelp(cmd, subCmd)
+		return
+	}
+
+	stream, gErr := hub.GetStream(streamId)
+	if gErr != nil {
+		fmt.Println("Get stream error,", gErr)
+		return
+	}
+
+	options := pili.OptionalArguments{
+		Time:shotTime,
+		NotifyUrl:notifyUrl,
+	}
+
+	ret, sErr := stream.Snapshot(name, format, options)
+	if sErr != nil {
+		fmt.Println("Snapshot stream error,", sErr)
+		return
+	}
+
+	fmt.Println("TargetUrl:", ret.TargetUrl)
+	fmt.Println()
+	fmt.Println(fmt.Sprintf("See http://api.qiniu.com/status/get/prefop?id=%s", ret.PersistentId))
 }
