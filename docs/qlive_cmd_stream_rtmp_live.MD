@@ -11,7 +11,7 @@ qlive stream rtmp-live <StreamId>
 # 参数
 
 |名称|描述|
-|--------|---------|
+|--------|--------|
 |StreamId|直播流的Id|
 
 # 示例

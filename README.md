@@ -56,8 +56,8 @@ Commands for stream:
        flv-live		qlive stream flv-live <StreamId>
          status		qlive stream status <StreamId>
        hls-play		qlive stream hls-play <StreamId> -s <Start> -e <End>
-         saveas		qlive stream saveas -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>
-       snapshot		qlive stream snapshot -n <Name> -f <Format> -t <Time> -c <NotifyUrl>
+         saveas		qlive stream saveas <StreamId> -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>
+       snapshot		qlive stream snapshot <StreamId> -n <Name> -f <Format> -t <Time> -c <NotifyUrl>
 ```
 
 
