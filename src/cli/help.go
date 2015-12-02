@@ -6,7 +6,7 @@ const VERISON = "1.0.0"
 
 var hubCmdOrder = []string{"reg", "info", "create-stream", "get-stream", "list-stream"}
 var streamCmdOrder = []string{"update", "delete", "disable", "enable", "rtmp-pub", "rtmp-live",
-	"hls-live", "flv-live", "hls-play", "status", "saveas", "snapshot"}
+	"hls-live", "flv-live", "status", "hls-play", "saveas", "snapshot"}
 
 var helpInfo = map[string]map[string]string{
 	"hub": map[string]string{
@@ -25,8 +25,8 @@ var helpInfo = map[string]map[string]string{
 		"rtmp-live": "qlive stream rtmp-live <StreamId>",
 		"hls-live":  "qlive stream hls-live <StreamId>",
 		"flv-live":  "qlive stream flv-live <StreamId>",
-		"hls-play":  "qlive stream hls-play <StreamId> -s <Start> -e <End>",
 		"status":    "qlive stream status <StreamId>",
+		"hls-play":  "qlive stream hls-play <StreamId> -s <Start> -e <End>",
 		"saveas":    "qlive stream saveas -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>",
 		"snapshot":  "qlive stream snapshot -n <Name> -f <Format> -t <Time> -c <NotifyUrl>",
 	},
