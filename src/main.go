@@ -21,7 +21,7 @@ func main() {
 		if cliFunc, ok := supportedCmds[cmd]; ok {
 			cliFunc(subCmd)
 		} else {
-			fmt.Println("Unknown cmd ", cmd)
+			fmt.Println("Unknown cmd", fmt.Sprintf("`%s`", cmd))
 		}
 	} else {
 		if argc > 1 {
@@ -33,7 +33,7 @@ func main() {
 			case "-h":
 				cli.Help()
 			default:
-				fmt.Println("Unknow option", option)
+				fmt.Println("Unknow option", fmt.Sprintf("`%s`", option))
 			}
 		} else {
 			fmt.Println("Use -h to see supported commands.")

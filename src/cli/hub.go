@@ -15,7 +15,7 @@ var hubSubCmdAlias = map[string]string{
 }
 
 var supportedHubSubCmds = map[string]func(string, string){
-	"stat":          GetHubInfo,
+	"info":          GetHubInfo,
 	"reg":           RegisterHub,
 	"create-stream": CreateStream,
 	"get-stream":    GetStream,
@@ -32,8 +32,7 @@ func Hub(subCmd string) {
 	if subCmdFunc, ok := supportedHubSubCmds[subCmd]; ok {
 		subCmdFunc("hub", subCmd)
 	} else {
-
-		fmt.Println("Unknown cmd ", subCmd, "for hub")
+		fmt.Println("Unknown cmd", fmt.Sprintf("`%s`", subCmd), "for hub")
 	}
 }
 

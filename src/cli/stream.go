@@ -29,7 +29,7 @@ func Stream(subCmd string) {
 	if subCmdFunc, ok := supportedStreamSubCmds[subCmd]; ok {
 		subCmdFunc("stream", subCmd)
 	} else {
-		fmt.Println("Unknown cmd ", subCmd, "for stream")
+		fmt.Println("Unknown cmd", fmt.Sprintf("`%s`", subCmd), "for stream")
 	}
 }
 

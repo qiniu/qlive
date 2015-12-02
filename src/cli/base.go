@@ -27,7 +27,7 @@ func (this *LiveHub) ToJson() (jsonStr string, err error) {
 }
 
 func (this *LiveHub) String() string {
-	return fmt.Sprintf("AccessKey: %s SecretKey: %s Hub: %s", this.AccessKey, this.SecretKey, this.Hub)
+	return fmt.Sprintf("AccessKey: %s \nSecretKey: %s \nHub: %s", this.AccessKey, this.SecretKey, this.Hub)
 }
 
 func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err error) {

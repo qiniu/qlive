@@ -4,15 +4,14 @@ import "fmt"
 
 const VERISON = "1.0.0"
 
-
-var hubCmdOrder = []string{"reg", "stat", "create-stream", "get-stream", "list-stream"}
+var hubCmdOrder = []string{"reg", "info", "create-stream", "get-stream", "list-stream"}
 var streamCmdOrder = []string{"update", "delete", "disable", "enable", "rtmp-pub", "rtmp-live",
 	"hls-live", "flv-live", "hls-play", "status", "saveas", "snapshot"}
 
 var helpInfo = map[string]map[string]string{
 	"hub": map[string]string{
 		"reg":           "qlive hub reg -ak <AccessKey> -sk <SecretKey> -hub <HubName>",
-		"stat":          "qlive hub info",
+		"info":          "qlive hub info",
 		"create-stream": "qlive hub create-stream -t <Title> -pbk <PublishKey> -pbs <PublishSecurity>",
 		"get-stream":    "qlive hub get-stream <StreamId>",
 		"list-stream":   "qlive hub list-stream -s <Status> -l <Limit> -p <Prefix>",
