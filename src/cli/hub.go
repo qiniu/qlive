@@ -179,7 +179,7 @@ func ListStream(cmd string, subCmd string) {
 	flagSet.StringVar(&status, "s", "", "stream status")
 	flagSet.StringVar(&marker, "m", "", "list offset marker")
 	flagSet.IntVar(&limit, "l", 0, "limit count")
-	flagSet.StringVar(&prefix, "t", "", "title prefix")
+	flagSet.StringVar(&prefix, "p", "", "title prefix")
 
 	flagSet.Parse(os.Args[3:])
 
