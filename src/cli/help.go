@@ -29,11 +29,23 @@ var helpInfo = map[string]map[string]string{
 }
 
 func Version() {
-	fmt.Println("qlive", VERISON)
+	fmt.Println("Qlive", VERISON)
 }
 
 func Help() {
+	fmt.Println("QLive", VERISON)
+	fmt.Println()
+	fmt.Println("Commands for hub:")
+	for cmd, help := range helpInfo["hub"] {
+		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, help))
+	}
 
+	fmt.Println()
+	fmt.Println("Commands for stream:")
+	for cmd, help := range helpInfo["stream"] {
+		fmt.Println(fmt.Sprintf("%15s\t\t%s", cmd, help))
+	}
+	fmt.Println()
 }
 
 func CmdHelp(cmd string, subCmd string) {

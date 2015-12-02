@@ -435,7 +435,7 @@ func parseTime(str string) (ts int64, err error) {
 		loc, _ := time.LoadLocation("Asia/Shanghai")
 		date := time.Date(int(year), time.Month(month), int(day), int(hour), int(minute), int(second), 0, loc)
 		ts = date.Unix()
-	}else {
+	} else {
 		ts, err = strconv.ParseInt(str, 10, 64)
 	}
 
@@ -544,7 +544,7 @@ func SaveStreamAsVideo(cmd string, subCmd string) {
 	}
 
 	options := pili.OptionalArguments{
-		NotifyUrl:notifyUrl,
+		NotifyUrl: notifyUrl,
 	}
 
 	ret, sErr := stream.SaveAs(name, format, start, end, options)
@@ -612,8 +612,8 @@ func TakeStreamSnapshot(cmd string, subCmd string) {
 	}
 
 	options := pili.OptionalArguments{
-		Time:shotTime,
-		NotifyUrl:notifyUrl,
+		Time:      shotTime,
+		NotifyUrl: notifyUrl,
 	}
 
 	ret, sErr := stream.Snapshot(name, format, options)
