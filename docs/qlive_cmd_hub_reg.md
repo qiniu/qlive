@@ -10,11 +10,11 @@ qlive hub reg -ak <AccessKey> -sk <SecretKey> -hub <HubName>
 
 # 参数
 
-|名称|描述|可选|
-|--------|-------|-------|
-|AccessKey|直播账号的`AccessKey`|N|
-|SecretKey|直播账号的`SecretKey`|N|
-|HubName|直播账号的直播通道名称|N|
+|名称|描述|
+|--------|-------|
+|AccessKey|直播账号的`AccessKey`|
+|SecretKey|直播账号的`SecretKey`|
+|HubName|直播账号的直播通道名称|
 
 # 示例
 

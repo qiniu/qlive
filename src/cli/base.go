@@ -19,7 +19,7 @@ type LiveHub struct {
 func (this *LiveHub) ToJson() (jsonStr string, err error) {
 	jsonData, mErr := json.Marshal(this)
 	if mErr != nil {
-		err = errors.New(fmt.Sprintf("Marshal account data failed, %s", mErr))
+		err = errors.New(fmt.Sprintf("Marshal hub info failed, %s", mErr))
 		return
 	}
 	jsonStr = string(jsonData)
@@ -33,7 +33,7 @@ func (this *LiveHub) String() string {
 func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err error) {
 	currentUser, uErr := user.Current()
 	if uErr != nil {
-		err = errors.New(fmt.Sprintf("Get current user failed, %s", uErr.Error()))
+		err = errors.New(fmt.Sprintf("Get current user error, %s", uErr.Error()))
 		return
 	}
 	qLiveHubFolder := filepath.Join(currentUser.HomeDir, ".qlive")
@@ -47,7 +47,7 @@ func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err er
 
 	fp, openErr := os.Create(qLiveHubFile)
 	if openErr != nil {
-		err = errors.New(fmt.Sprintf("Open account file failed, %s", openErr.Error()))
+		err = errors.New(fmt.Sprintf("Open hub info file error, %s", openErr.Error()))
 		return
 	}
 	defer fp.Close()
@@ -64,7 +64,7 @@ func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err er
 
 	_, wErr := fp.WriteString(jsonStr)
 	if wErr != nil {
-		err = errors.New(fmt.Sprintf("Write account info failed, %s", wErr.Error()))
+		err = errors.New(fmt.Sprintf("Write hub info failed, %s", wErr.Error()))
 		return
 	}
 
@@ -80,17 +80,17 @@ func (this *LiveHub) Get() (err error) {
 	qLiveHubFile := filepath.Join(currentUser.HomeDir, ".qlive", "hub.json")
 	fp, openErr := os.Open(qLiveHubFile)
 	if openErr != nil {
-		err = errors.New(fmt.Sprintf("Open account file failed, %s", openErr.Error()))
+		err = errors.New(fmt.Sprintf("Get hub info error, %s", openErr.Error()))
 		return
 	}
 	defer fp.Close()
 	accountBytes, readErr := ioutil.ReadAll(fp)
 	if readErr != nil {
-		err = errors.New(fmt.Sprintf("Read account file error, %s", readErr.Error()))
+		err = errors.New(fmt.Sprintf("Read hub info error, %s", readErr.Error()))
 		return
 	}
 	if umError := json.Unmarshal(accountBytes, this); umError != nil {
-		err = errors.New(fmt.Sprintf("Parse account file error, %s", umError.Error()))
+		err = errors.New(fmt.Sprintf("Parse hub info error, %s", umError.Error()))
 		return
 	}
 
