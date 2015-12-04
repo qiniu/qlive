@@ -8,7 +8,7 @@
 
 |版本|支持平台|链接|
 |---|-----|-----|
-|QLive v1.0.0|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.0.zip)|
+|QLive v1.0.1|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.1.zip)|
 
 ## 使用方法
 
@@ -36,7 +36,7 @@
 **所有的支持的命令列表**
 
 ```
-QLive 1.0.0
+QLive 1.0.1
 
 Commands for hub:
             reg		qlive hub reg -ak <AccessKey> -sk <SecretKey> -hub <HubName>
