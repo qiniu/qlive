@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"os/user"
 	"path/filepath"
 )
 
@@ -31,12 +30,7 @@ func (this *LiveHub) String() string {
 }
 
 func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err error) {
-	currentUser, uErr := user.Current()
-	if uErr != nil {
-		err = errors.New(fmt.Sprintf("Get current user error, %s", uErr.Error()))
-		return
-	}
-	qLiveHubFolder := filepath.Join(currentUser.HomeDir, ".qlive")
+	qLiveHubFolder := ".qlive"
 	if _, sErr := os.Stat(qLiveHubFolder); sErr != nil {
 		if mErr := os.MkdirAll(qLiveHubFolder, 0775); mErr != nil {
 			err = errors.New(fmt.Sprintf("Mkdir `%s' failed, %s", qLiveHubFolder, mErr.Error()))
@@ -72,12 +66,7 @@ func (this *LiveHub) Set(accessKey string, secretKey string, hub string) (err er
 }
 
 func (this *LiveHub) Get() (err error) {
-	currentUser, uErr := user.Current()
-	if uErr != nil {
-		err = errors.New(fmt.Sprintf("Get current user failed, %s", uErr.Error()))
-		return
-	}
-	qLiveHubFile := filepath.Join(currentUser.HomeDir, ".qlive", "hub.json")
+	qLiveHubFile := filepath.Join(".qlive", "hub.json")
 	fp, openErr := os.Open(qLiveHubFile)
 	if openErr != nil {
 		err = errors.New(fmt.Sprintf("Get hub info error, %s", openErr.Error()))
