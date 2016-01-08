@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"github.com/jemygraw/pili-sdk-go/pili"
 	"os"
+	"runtime"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -465,22 +467,47 @@ func GetStreamStatus(cmd string, subCmd string) {
 		return
 	}
 
-	status, gErr := stream.Status()
-	if gErr != nil {
-		fmt.Println("Get stream status error,", gErr)
-		return
+	platform := runtime.GOOS
+	for {
+
+		status, gErr := stream.Status()
+		if gErr != nil {
+			fmt.Println("Get stream status error,", gErr)
+			return
+		}
+
+		var outputStatus string
+
+		if platform == "windows" {
+			outputStatus += fmt.Sprintf("%s", strings.ToUpper(status.Status))
+		} else {
+			if status.Status == "connected" {
+				outputStatus += fmt.Sprintf("\033[32m%s\033[37m", strings.ToUpper(status.Status))
+			} else {
+				outputStatus += fmt.Sprintf("\033[31m%s\033[37m", strings.ToUpper(status.Status))
+			}
+		}
+
+		if status.Status == "connected" {
+
+			if platform == "windows" {
+				outputStatus += fmt.Sprintf(" %s", status.StartFrom)
+				outputStatus += fmt.Sprintf(" BPS: %.2f", status.BytesPerSecond)
+				outputStatus += fmt.Sprintf(" FPSA: %.2f FPSV: %.2f FPSD: %.2f", status.FramesPerSecond.Audio,
+					status.FramesPerSecond.Video, status.FramesPerSecond.Data)
+			} else {
+				outputStatus += fmt.Sprintf(" \033[33m%s\033[37m", status.StartFrom)
+				outputStatus += fmt.Sprintf(" BPS: \033[32m%.2f\033[37m", status.BytesPerSecond)
+				outputStatus += fmt.Sprintf(" FPSA: \033[32m%.2f\033[37m FPSV: \033[32m%.2f\033[37m FPSD: \033[32m%.2f\033[37m",
+					status.FramesPerSecond.Audio, status.FramesPerSecond.Video, status.FramesPerSecond.Data)
+			}
+		}
+
+		fmt.Print("\033[2K\r")
+		fmt.Printf("%s", outputStatus)
+
+		<-time.After(time.Millisecond * 500)
 	}
-
-	fmt.Println("Stream Status:", status.Status)
-	fmt.Println()
-	fmt.Println(" Address:\t\t", status.Addr)
-	fmt.Println(" StartFrom:\t\t", status.StartFrom)
-	fmt.Println(" BytesPerSecond:\t", status.BytesPerSecond)
-	fmt.Println(" FramesPerSecond:\t")
-	fmt.Println("    Audio:\t", status.FramesPerSecond.Audio)
-	fmt.Println("    Video:\t", status.FramesPerSecond.Video)
-	fmt.Println("    Data:\t", status.FramesPerSecond.Data)
-
 }
 
 func SaveStreamAsVideo(cmd string, subCmd string) {
