@@ -2,7 +2,7 @@ package cli
 
 import "fmt"
 
-const VERISON = "1.0.1"
+const VERISON = "1.0.2"
 
 var hubCmdOrder = []string{"reg", "info", "create-stream", "get-stream", "list-stream"}
 var streamCmdOrder = []string{"update", "delete", "disable", "enable", "rtmp-pub", "rtmp-live",

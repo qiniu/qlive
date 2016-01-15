@@ -8,7 +8,7 @@
 
 |版本|支持平台|链接|
 |---|-----|-----|
-|QLive v1.0.1|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.1.zip)|
+|QLive v1.0.2|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.2.zip)|
 
 ## 使用方法
 
@@ -32,6 +32,26 @@
 3. 该工具命令分为`hub`组命令和`stream`组命令，其他都是组下面的子命令。
 
 
+**注意事项**
+
+为了能够支持多hub的情况，该工具设计的时候将hub的信息写入到工具当前执行时所在的目录。这样我们就可以规划一些目录，专门做为工具的运行目录。
+比如如下的目录`hub1`和`hub2`专门做为工具的执行目录，其中每个目录下面的`hub.json`存储了hub的配置信息。
+
+```
+➜  hubs  pwd
+/Users/jemy/Temp/hubs
+
+➜  hubs  tree -a
+.
+├── hub1
+│   └── .qlive
+│       └── hub.json
+└── hub2
+    └── .qlive
+        └── hub.json
+
+4 directories, 2 files
+```
 
 ## 命令列表
 
