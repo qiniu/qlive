@@ -5,7 +5,7 @@
 # 命令
 
 ```
-qlive stream saveas <StreamId> -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>
+qlive stream saveas <StreamId> -n <Name> -f <Format> -s <Start> -e <End> -p <Pipeline> -c <NotifyUrl>
 ```
 
 # 参数
