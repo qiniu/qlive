@@ -1,14 +1,14 @@
 # 七牛直播命令行工具
 
 ## 简介
-本项目是七牛直播业务的命令行工具，可以用在直播业务的开发和调试过程中。
+本项目是七牛直播业务的命令行工具，可以用在直播业务的开发和调试过程中。该工具基于[PILI v1](https://github.com/pili-engineering/pili-sdk-go) 的服务端SDK。
 
 ## 下载
 可以下载已编译版本，直接使用。
 
 |版本|支持平台|链接|
 |---|-----|-----|
-|QLive v1.0.2|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.2.zip)|
+|QLive v1.0.3|Windows，Linux，Mac|[下载](http://devtools.qiniu.com/qlive-v1.0.3.zip)|
 
 ## 使用方法
 
@@ -78,7 +78,7 @@ Commands for stream:
        flv-live		qlive stream flv-live <StreamId>
          status		qlive stream status <StreamId>
        hls-play		qlive stream hls-play <StreamId> -s <Start> -e <End>
-         saveas		qlive stream saveas <StreamId> -n <Name> -f <Format> -s <Start> -e <End> -c <NotifyUrl>
+         saveas		qlive stream saveas <StreamId> -n <Name> -f <Format> -s <Start> -e <End> -p <Pipeline> -c <NotifyUrl>
        snapshot		qlive stream snapshot <StreamId> -n <Name> -f <Format> -t <Time> -c <NotifyUrl>
 ```
 
