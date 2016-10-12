@@ -3,7 +3,7 @@ package cli
 import (
 	"flag"
 	"fmt"
-	"github.com/jemygraw/pili-sdk-go/pili"
+	"github.com/pili-engineering/pili-sdk-go/pili"
 	"os"
 	"runtime"
 	"strconv"
@@ -535,19 +535,25 @@ func SaveStreamAsVideo(cmd string, subCmd string) {
 	var format string
 	var startTime string
 	var endTime string
+	var pipeline string
 	var notifyUrl string
 
 	flagSet.StringVar(&name, "n", "", "name")
 	flagSet.StringVar(&format, "f", "", "format")
 	flagSet.StringVar(&startTime, "s", "", "start time")
 	flagSet.StringVar(&endTime, "e", "", "end time")
+	flagSet.StringVar(&pipeline, "p", "", "pipeline")
 	flagSet.StringVar(&notifyUrl, "c", "", "notify url")
 
 	flagSet.Parse(os.Args[4:])
 
-	if name == "" || format == "" || startTime == "" || endTime == "" {
+	if name == "" || startTime == "" || endTime == "" {
 		CmdHelp(cmd, subCmd)
 		return
+	}
+
+	if format == "null" {
+		format = ""
 	}
 
 	var start int64
@@ -571,7 +577,8 @@ func SaveStreamAsVideo(cmd string, subCmd string) {
 	}
 
 	options := pili.OptionalArguments{
-		NotifyUrl: notifyUrl,
+		UserPipeline: pipeline,
+		NotifyUrl:    notifyUrl,
 	}
 
 	ret, sErr := stream.SaveAs(name, format, start, end, options)

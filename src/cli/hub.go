@@ -3,7 +3,7 @@ package cli
 import (
 	"flag"
 	"fmt"
-	"github.com/jemygraw/pili-sdk-go/pili"
+	"github.com/pili-engineering/pili-sdk-go/pili"
 	"os"
 )
 

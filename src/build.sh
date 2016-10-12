@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-export GOPATH=$GOPATH:/Users/jemy/QiniuCloud/Projects/qlive
+DIR=$(cd ../; pwd)
+export GOPATH=$GOPATH:$DIR
 go build main.go
